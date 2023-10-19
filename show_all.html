@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f4f4;
+         margin: 0;
+         padding: 0;
+      }
+      h1 {
+         color: #333;
+         text-align: center;
+         margin-top: 20px;
+      }
+      .container {
+         width: 50%;
+         margin: auto;
+         padding: 20px;
+         background-color: #fff;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .flash-error {
+         color: red;
+      }
+      .flash-success {
+         color: green;
+      }
+      form {
+         margin-top: 20px;
+      }
+      dl {
+         margin: 10px 0;
+      }
+      dt {
+         font-weight: bold;
+         margin-bottom: 5px;
+      }
+      dd {
+         margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="password"] {
+         width: 100%;
+         padding: 8px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         box-sizing: border-box;
+      }
+      input[type="submit"] {
+         background-color: #333;
+         color: #fff;
+         padding: 10px 20px;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+      }
+      a {
+         color: #333;
+         text-decoration: none;
+      }
+   </style> -->
+</head>
+
+<body>
+   <!-- {% with messages = get_flashed_messages (with_categories=true) %} {% if
+      messages %} {% for category,login_message in messages %}
+      <div>
+        {{login_message}}
+      </div>
+      {% endfor %} {% endif %} {% endwith %} -->
+
+   
+   
+      <!-- {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %} -->
+
+
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category,message in messages %}
+      <div class="flash-{{category}}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+   <h1>Login</h1>
+
+   <form action="/login" method='POST'>
+      
+   {% if error %}
+   <p><strong>Error:</strong> {{ error }}
+      {% endif %}
+      {% if note %}
+   <p><strong>Note:</strong> {{ note }}
+      {% endif %}
+      <dl>
+         <dt>Email:</dt>
+         <dd>
+            <input type=text name=email value="{{request.form.email }}">
+         </dd>
+         <dt>Password:</dt>
+         <dd><input type=password name=password></dd>
+      </dl>
+      <p><input type=submit value=Login></p>
+      (<a href="{{ url_for('new') }}">New Registration
+      </a>)
+   </form>
+
+</body>
+
+</html>

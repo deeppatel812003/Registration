@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Joke</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% if error %}
+    <p><strong>Error:</strong> {{ error }}
+ {% endif %}
+    <div class="container mt-5">
+        <h1>Joke</h1>
+        <p>{{ joke }}</p>
+        
+        <a href = "{{url_for('logout')}}"><p><input type = submit value = Logout></p></a>
+    </div>   
+</body>
+</html>
